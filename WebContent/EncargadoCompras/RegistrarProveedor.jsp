@@ -47,9 +47,9 @@ Vector<ProveedorBean> proveedor=(Vector<ProveedorBean>)request.getAttribute("pro
 	                 	<div class="col-sm-12 form-group">
 	                 	<br>
 							<div class="col-sm-12" style="text-align: left;">
-								<label for="codigoProveedor" class="col-sm-3 control-label" style="text-align: right; font-size: 20px;">C&oacute;digo:<label style="color: red;">*</label></label>
+								<label for="codigoProveedor" class="col-sm-3 control-label" style="text-align: right; font-size: 20px;">RUC :<label style="color: red;">*</label></label>
 								<div class="col-sm-9" style="text-align: left;">
-									<input class="form-control" type="number" name="ruc" id="ruc" min="0" placeholder="Ingrese el c&oacute;digo del proveedor">
+									<input class="form-control" type="text" name="ruc" id="ruc"  placeholder="Ingrese el RUC del proveedor">
 								</div>
 							</div>	
 						</div>
@@ -73,7 +73,7 @@ Vector<ProveedorBean> proveedor=(Vector<ProveedorBean>)request.getAttribute("pro
 							<div class="col-sm-12" style="text-align: left;">
 								<label for="direccion" class="col-sm-3 control-label" style="text-align: right; font-size: 20px;">Telefono:<label style="color: red;">*</label></label>
 								<div class="col-sm-9" style="text-align: left;">
-									<input class="form-control" type="text" name="telefono" id="telefono" maxlength="13" placeholder="Ejemplo: 541-4509">
+									<input class="form-control" type="text" name="telefono" id="telefono" maxlength="7" placeholder="Ejemplo: 541-4509">
 								</div>
 							</div>
 					    </div>
@@ -89,8 +89,9 @@ Vector<ProveedorBean> proveedor=(Vector<ProveedorBean>)request.getAttribute("pro
                 		<button class="btn-large btn btn-primary" onclick="return validar(this.form)" type="submit"><b>Registrar</b></button>
                 		<br>
                  	</div>
-                 	<div class="col-sm-12 form-group alert alert-danger" style="display: none;" id="errorRegistrar">El código del proveedor debe tener 8 dígitos.</div>
+                 	<div class="col-sm-12 form-group alert alert-danger" style="display: none;" id="errorRegistrar">El RUC del proveedor debe tener 11 dígitos.</div>
                  	<div class="col-sm-12 form-group alert alert-danger" style="display: none;" id="errorRegistrar2">Usted debe completar todos los campos.</div>
+                 	<div class="col-sm-12 form-group alert alert-danger" style="display: none;" id="errorRegistrar3">Usted debe ingresar un telefono valido.</div>
                  	<%if(mensaje1!=null){%>
 						<div class="col-sm-12 form-group alert alert-success"><%=mensaje1%></div>
 					<%}%>
@@ -102,17 +103,27 @@ Vector<ProveedorBean> proveedor=(Vector<ProveedorBean>)request.getAttribute("pro
 						if(form.ruc.value=="" || form.razonSoc.value=="" || form.direccion.value=="" || form.telefono.value==""){
 							document.getElementById("errorRegistrar").style.display = "none";
 							document.getElementById("errorRegistrar2").style.display = "block";
+							document.getElementById("errorRegistrar3").style.display = "none";
+							
 							return false;
 															
-						} else if(form.ruc.value<=10000000 || form.ruc.value>=99999999){
+						} else if(form.ruc.value<=10000000000 || form.ruc.value>=99999999999){
 							document.getElementById("errorRegistrar").style.display = "block";
 							document.getElementById("errorRegistrar2").style.display = "none";
+							document.getElementById("errorRegistrar3").style.display = "none";
+							
 							return false;
-						} else {
+						} else if(form.telefono.value<=2000000 || form.telefono.value>=9999999){
+							
 							document.getElementById("errorRegistrar").style.display = "none";
 							document.getElementById("errorRegistrar2").style.display = "none";
+							document.getElementById("errorRegistrar3").style.display = "block";
+							return false;
+						}else {
+							
 							return true;
 						}
+						
 					}
 							
 					</script>

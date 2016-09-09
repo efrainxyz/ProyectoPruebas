@@ -11,6 +11,7 @@ public interface I_Prenda {
 	public Vector<TipoPrendaBean> listarTiposPrenda() throws Exception;
 	public Vector<TipoPrendaBean> listarTiposPrendaColaborador() throws Exception;
 	public boolean estadoTipoPrenda(int id, int estado) throws Exception;
+	public boolean existePrenda(String prenda) throws Exception;
 	public boolean modificarTipoPrenda(TipoPrendaBean prenda) throws Exception;
 	public boolean agregarPrenda (TipoPrendaBean prenda) throws  Exception;
 	public boolean agregarTallaColaborador(PrendaBean prenda) throws Exception;

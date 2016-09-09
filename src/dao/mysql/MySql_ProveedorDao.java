@@ -31,7 +31,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			
 			if(rs.next()){
 				objProveedor= new ProveedorBean();
-				objProveedor.setIdProveedor(rs.getInt("idProveedor"));
+				objProveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
 				objProveedor.setRazonSoc(rs.getString("razonSoc"));
 				objProveedor.setDirecProve(rs.getString("direcProve"));
 				objProveedor.setTelefono(rs.getString("telefono"));
@@ -95,7 +95,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 				objPrenda.setPrecioUnitario(rs.getDouble("precioUnitario"));
 				
 				ProveedorBean objProveedor=new ProveedorBean();
-				objProveedor.setIdProveedor(rs.getInt("idProveedor"));
+				objProveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
 				objProveedor.setRazonSoc(rs.getString("razonSoc"));
 				objProveedor.setDirecProve(rs.getString("direcProve"));
 				objProveedor.setTelefono(rs.getString("telefono"));
@@ -126,7 +126,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			ProveedorBean objproveedor=null;
 			while( rs.next() ){
 				objproveedor= new ProveedorBean();
-				objproveedor.setIdProveedor(rs.getInt(1));
+				objproveedor.setIdProveedor(Integer.parseInt(rs.getString(1)));
 				objproveedor.setRazonSoc(rs.getString(2));
 				objproveedor.setDirecProve(rs.getString(3));
 				objproveedor.setTelefono(rs.getString(4));
@@ -149,6 +149,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			Connection con=MySQLDaoFactory.obtenerConexion();
 			Statement stm=con.createStatement();
 			String query="insert into proveedor(idProveedor,razonSoc,direcProve,telefono) values('"+proveedor.getIdProveedor()+"','"+proveedor.getRazonSoc()+"','"+proveedor.getDirecProve()+"','"+proveedor.getTelefono()+"')";
+			System.out.print(query);
 			int filas=stm.executeUpdate(query);
 			if(filas==1){
 				flag=true;
@@ -172,7 +173,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			ProveedorBean objproveedor=null;
 			while( rs.next() ){
 				objproveedor=new ProveedorBean();
-				objproveedor.setIdProveedor(rs.getInt("idProveedor"));
+				objproveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
 				objproveedor.setRazonSoc(rs.getString("razonSoc"));
 				objproveedor.setDirecProve(rs.getString("direcProve"));
 				objproveedor.setTelefono(rs.getString("telefono"));
@@ -217,7 +218,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			while(rs.next()){
 				
 				objproveedor=new ProveedorBean();
-				objproveedor.setIdProveedor(rs.getInt("idProveedor"));
+				objproveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
 				objproveedor.setRazonSoc(rs.getString("razonSoc"));
 				objproveedor.setDirecProve(rs.getString("direcProve"));
 				objproveedor.setTelefono(rs.getString("telefono"));

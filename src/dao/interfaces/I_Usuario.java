@@ -6,6 +6,7 @@ import beans.UsuarioBean;
 
 public interface I_Usuario {
 	public UsuarioBean validar(String usuario, String clave) throws Exception;
+	public PersonaBean obtenerPersona(int id_usuario) throws Exception;
 	public UsuarioBean obtenerUsuario(int id_usuario) throws Exception;
 	public Vector<PersonaBean> obtenerCorreosFaltantes() throws Exception;
 	public Vector<UsuarioBean> listarUsuarios() throws Exception;

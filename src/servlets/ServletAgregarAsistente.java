@@ -87,49 +87,49 @@ public class ServletAgregarAsistente extends HttpServlet {
 					
 					DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 					I_Usuario usu=dao.getUsuarioDao();
-					
-					System.out.println(request.getParameter("dni")+" "+request.getParameter("nombre")+" "
-							+request.getParameter("apepat")+" "+request.getParameter("apemat")+" "
-							+request.getParameter("sexo")+" "+request.getParameter("direccion")+" "
-							+request.getParameter("telefono")+" "+request.getParameter("correo")+" "
-							+request.getParameter("sede"));
-					
 					PersonaBean persona= new PersonaBean();
-					persona.setDni(request.getParameter("dni"));
-					persona.setNomPer(request.getParameter("nombre"));
-					persona.setApePat(request.getParameter("apepat"));
-					persona.setApeMat(request.getParameter("apemat"));
-					persona.setSexo(request.getParameter("sexo"));
-					persona.setDirecPer(request.getParameter("direccion"));
-					persona.setTelefono(request.getParameter("telefono"));
-					persona.setCorreo(request.getParameter("correo"));
-					persona.setSede_idSede(Integer.parseInt(request.getParameter("sede")));
 					
-					UsuarioBean usuario = new UsuarioBean();
-					usuario.setPersona(persona);
-					usuario.setUsuario(request.getParameter("usuario"));
-					usuario.setClave(request.getParameter("clave"));
-					
-					
-					
-								
-					boolean flag=usu.agregar(usuario);
-					
-					if(flag){
-						request.setAttribute("msj1","El asistente se agrego con éxito.");
-					}else{
-						request.setAttribute("msj2","El asistente no ha sido agregado.");
-					}
-					
-					Vector<UsuarioBean> usuarios= usu.listarUsuarios2();
-					if(usuarios.size()>0){
-						request.setAttribute("usuario", usuarios);
+					String accion=request.getParameter("accion");
+					if(accion.equals("verificar")){
+						System.out.println(Integer.parseInt(request.getParameter("codusuario")));
 						
-					}else{
-						request.setAttribute("msj", "No hay prendas registradas");
-					}
-					
-					request.getRequestDispatcher("/Administrador/MantenerAsistente.jsp").forward(request, response);
+						persona=usu.obtenerPersona(Integer.parseInt(request.getParameter("codusuario")));
+						 if(persona==null){
+								 request.setAttribute("msj1","Usuario no disponible , intente de nuavamente.");
+								 request.getRequestDispatcher("/Administrador/AgregarAsistente.jsp").forward(request, response);
+								 
+							 }else{
+								 request.setAttribute("msj2","Usuario Disponible!");
+								 request.setAttribute("codusuario", persona.getIdPersona());
+								 request.setAttribute("correo",persona.getCorreo());
+								 request.getRequestDispatcher("/Administrador/AgregarAsistente.jsp").forward(request, response);
+							 }
+							
+					}else if(accion.equals("agregar")){
+						
+							UsuarioBean usuario = new UsuarioBean();
+							usuario.setCodUsuario(Integer.parseInt(request.getParameter("codusuario2")));
+							usuario.setUsuario(request.getParameter("usuario"));
+							usuario.setClave(request.getParameter("clave"));
+							
+							boolean flag=usu.agregar(usuario);
+							
+							if(flag){
+								request.setAttribute("msj1","El asistente se agrego con éxito.");
+							}else{
+								request.setAttribute("msj2","El asistente no ha sido agregado.");
+							}
+							
+							Vector<UsuarioBean> usuarios= usu.listarUsuarios2();
+							if(usuarios.size()>0){
+								request.setAttribute("usuario", usuarios);
+								
+							}else{
+								request.setAttribute("msj", "No hay asistentes registrados");
+							}
+							
+							request.getRequestDispatcher("/Administrador/MantenerAsistente.jsp").forward(request, response);
+				   }
 				}else{
 					request.setAttribute("mensaje", "Ingrese nuevamente.");
 					request.getRequestDispatcher("/login.jsp").forward(request, response);

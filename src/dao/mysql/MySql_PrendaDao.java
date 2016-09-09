@@ -249,9 +249,30 @@ public class MySql_PrendaDao extends MySQLDaoFactory implements I_Prenda {
 			Connection con=MySQLDaoFactory.obtenerConexion();
 			Statement stm=con.createStatement();
 			String query="insert into tipoprenda(nomTip,descripcion,estado) values('"+prenda.getNomTip()+"','"+prenda.getDescripcion()+"','1')";
-			System.out.print(query);
+		
 			int filas=stm.executeUpdate(query);
 			if(filas==1){
+				flag=true;
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean existePrenda(String prenda) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySQLDaoFactory.obtenerConexion();
+			String query="select * from tipoprenda where nomTip like '"+prenda+"%'";
+			
+			Statement stmt = con.createStatement();
+			ResultSet rs =stmt.executeQuery(query);
+			
+			while( rs.next() ){
 				flag=true;
 			}
 			con.close();

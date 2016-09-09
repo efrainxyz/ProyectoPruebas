@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
+
 import beans.DetalleOrdenBean;
 import beans.OrdenCompraBean;
+import beans.ProveedorBean;
 import beans.TipoPrendaBean;
 import dao.interfaces.I_OrdenCompra;
 import daofactory.MySQLDaoFactory;
@@ -114,11 +116,18 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 		Vector<DetalleOrdenBean> detalleOrden = new Vector<DetalleOrdenBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="select *,date(b.fechEmision) as fechaEmision from ordencompraxprenda a INNER JOIN ordencompra b ON a.ordenCompra_idOrdenCompra=b.idOrdenCompra INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip where a.ordenCompra_idOrdenCompra='"+id+"'";
+			String query="select *,date(b.fechEmision) as fechaEmision from ordencompraxprenda a INNER JOIN ordencompra b ON a.ordenCompra_idOrdenCompra=b.idOrdenCompra INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip INNER JOIN proveedor d ON d.idProveedor=b.proveedor_idProveedor where a.ordenCompra_idOrdenCompra='"+id+"'";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			DetalleOrdenBean objdetalle=null;
 			while( rs.next() ){
+				
+				ProveedorBean  objprove= new ProveedorBean();
+				objprove.setRazonSoc(rs.getString("d.razonSoc"));
+				objprove.setIdProveedor(Integer.parseInt(rs.getString("d.idProveedor")));
+				objprove.setDirecProve(rs.getString("d.direcProve"));
+				
+				
 				objdetalle=new DetalleOrdenBean();
 				objdetalle.setOrdenCompra_idOrdenCompra(rs.getString("a.ordenCompra_idOrdenCompra"));
 				objdetalle.setIdTipoPrenda(rs.getInt("a.idTipoPrenda"));
@@ -134,7 +143,7 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 				orden.setMontoTotal(rs.getDouble("b.montoTotal"));
 				orden.setPersona_idPersona(rs.getInt("b.persona_idPersona"));
 				orden.setProveedor_idProveedor(rs.getInt("b.proveedor_idProveedor"));
-				
+				orden.setProveedor(objprove);
 				objdetalle.setOrden(orden);
 				
 				TipoPrendaBean tipoPrenda=new TipoPrendaBean();

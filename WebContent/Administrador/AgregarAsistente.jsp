@@ -12,6 +12,8 @@
 }else{%>
 <%
 Vector<SedeBean> sede=(Vector<SedeBean>) request.getAttribute("sede");
+String mensaje1=(String)request.getAttribute("msj1");
+String mensaje2=(String)request.getAttribute("msj2");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <head>
@@ -26,78 +28,59 @@ Vector<SedeBean> sede=(Vector<SedeBean>) request.getAttribute("sede");
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.dataTables.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/table.js"></script>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles.css" type="text/css"/>
-	<script type="text/javascript">
-function Validar()
-{
-if(document.form.sexo[0].checked==false && document.form.sexo[1].checked==false){
-	 document.getElementById('msj').innerHTML = 'Debe seleccionar el sexo'; 	 	
-     	return false;
-  }
-if(document.getElementById("pass2").value!=document.getElementById("pass1").value){
-	document.getElementById('msj2').innerHTML = 'Las contraseñas no son iguales.';
-	return false
-}
-
-if(document.getElementById("sel").value=0){
-	document.getElementById('msj3').innerHTML = 'Debe asignar una sede.';
-	return false
-}
-
-return true
-}
-
-</script>
+	<script> 
+	function comprobarClave(){ 
+		if(document.getElementById("pass2").value!=document.getElementById("pass1").value){
+			document.getElementById('msj2').innerHTML = 'Las contraseñas no son iguales.';
+			return false
+		}
+		return true
+   	
+	}
+</script> 
+	
 </head>
 <body alink="purple" vlink="darkblue">
 <div class="container-fluid">
             <div class="row">
             <jsp:include page="cabecera.jsp" flush="true"/>
             	<div class="col-sm-12" style="text-align:left;">
-                	<label for="agregarPrenda" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Agregar Prenda</label>
+                	<label for="agregarPrenda" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Agregar Asistente</label>
                  </div>
                  
               
-               
+                 <%if(mensaje1!=null){%>
+						<div class="col-sm-12">
+							<div class="alert alert-danger"><%=mensaje1%></div>
+						</div>
+					<%}%>
+					
             	<div class="col-sm-12">
             		<br>
-					<form name="form" method="post" onSubmit="return Validar()" action="<%=request.getContextPath()%>/AgregarAsistente" >
+            		
+					<form name="form" method="post"  action="<%=request.getContextPath()%>/AgregarAsistente?accion=verificar" >
 						<div class="row">
-						
-							<div class="col-md-6">
-								<label for="buscaOrden" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Datos Personales</label><br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Dni : </label> <input name="dni" class="form-control" type="number" ></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Nombre : </label> <input name="nombre" class="form-control" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Apellido Paterno: </label> <input name="apepat" class="form-control" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Apellido Materno : </label> <input name="apemat" class="form-control"   required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Sexo : </label> 
-									<label class="checkbox-inline" required>
-									  <input type="radio" name="sexo" value="M">Hombre
-									</label>
-									<label class="checkbox-inline">
-									  <input type="radio" name="sexo" value="F">Mujer
-									</label><br>
-									<label id="msj" class="control-label" style="text-align: left; font-size: 15px; color: red;" ></label>
-									<br><br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Dirección : </label> <input name="direccion" class="form-control"  required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Telefono : </label> <input name="telefono" class="form-control" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Correo : </label> <input name="correo" class="form-control" required></br>
+							<div class="col-md-12">
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Codigo de usuario : </label> <input name="codusuario" class="form-control" required></br>
 							</div>
-							<div class="col-md-6">
+						</div>
+						<button class="btn btn-success" type="submit">Verificar</button></br>
+				
+					</form>
+					<%if(mensaje2!=null){%>
+					</br>
+						<div class="col-sm-12">
+							<div class="alert alert-success"><%=mensaje2%></div>
+						</div>
+					
+					<form name="form1" method="post" onsubmit="return comprobarClave()" action="<%=request.getContextPath()%>/AgregarAsistente?accion=agregar" >
+						<div class="row">
+							<div class="col-md-12">
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Codigo de usuario : </label> <input name="codusuario2" value="<%=request.getAttribute("codusuario") %>" class="form-control" readonly="readonly"></br>
 								<label for="agregarAsistente" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Datos de Usuario</label><br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Sede : </label> 
-								<label id="msj3" class="control-label" style="text-align: left; font-size: 15px; color: red;" ></label>
-										<select id="opcion" name="sede" class="form-control" required>
-										<option id="sel" value="0">Seleccione..</option>
-										
-										<%for(int i=0;i<sede.size();i++){ %>
-										  <option  value="<%=sede.get(i).getIdSede()%>" ><%=sede.get(i).getNomSede() %></option>
-										  <%} %>
-										</select></br>
-							
-										</br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Usuario : </label> <input name="usuario" class="form-control" required></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Usuario : </label> <input name="usuario" class="form-control" value="<%=request.getAttribute("correo") %>" readonly="readonly"></br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Contraseña : </label> <input name="clave" id="pass1" type="password" class="form-control" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Repetir Contraseña: </label> <input name="clave" id="pass2" type="password" class="form-control" required></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Repetir Contraseña: </label> <input name="clave2" id="pass2" type="password" class="form-control" required></br>
 								<label id="msj2" class="control-label" style="text-align: left; font-size: 15px; color: red;" ></label>
 							</div>
 						</div>
@@ -105,7 +88,7 @@ return true
 							<button class="btn btn-danger" type="button" onclick="location.href='<%=request.getContextPath()%>/MantenerAsistente'">Cancelar</button>
 					</form>
   				</div>
-  			
+  			<%} %>
 			</div>
 </div>
 </body>

@@ -124,6 +124,45 @@ public class MySql_UsuarioDao extends MySQLDaoFactory implements I_Usuario {
 		return objusuario;
 	}
 	
+	
+	public PersonaBean obtenerPersona(int id_persona) throws Exception {
+		PersonaBean objpersona = null;
+		try {
+			Connection con = MySQLDaoFactory.obtenerConexion();
+			String query="select * from persona a INNER JOIN usuario b ON a.idPersona=b.codUsuario where a.idPersona="+id_persona;
+			Statement stmt = con.createStatement();
+			ResultSet rs =stmt.executeQuery(query);
+			
+
+			if(rs.next()){
+					
+					objpersona=null;
+					
+			}else{
+				String query2="select * from persona where idPersona="+id_persona;
+				Statement stmt2 = con.createStatement();
+				ResultSet rs2 =stmt2.executeQuery(query2);
+				
+				if(rs2.next()){
+					objpersona=new PersonaBean();
+					objpersona.setIdPersona(rs2.getInt("idPersona"));
+					objpersona.setCorreo(rs2.getString("correo"));
+				}else{
+					objpersona=null;
+				}
+				
+			}
+			
+			con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return objpersona;
+	}
+	
+	
+	
 	@Override
 	public Vector<PersonaBean> obtenerCorreosFaltantes() throws Exception {
 		// TODO Auto-generated method stub
@@ -315,33 +354,16 @@ public class MySql_UsuarioDao extends MySQLDaoFactory implements I_Usuario {
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
 			Statement stmt = con.createStatement();
-			String quer="SELECT (idPersona+1) as codigo FROM persona ORDER BY idPersona DESC LIMIT 1";
-			ResultSet rs =stmt.executeQuery(quer);
-			int codigo=0;
-			while (rs.next())
-			{
-			   codigo = rs.getInt(1);
-			  
-			}
-			
-					String query = "insert into persona (idPersona,dni,nomPer,apePat,apeMat,sexo,direcPer,correo,telefono,sede_idSede) "
-					+ "values ('"+codigo+"','"+usuario.getPersona().getDni()+"','"+usuario.getPersona().getNomPer()+"',"
-					+ "'"+usuario.getPersona().getApePat()+"','"+usuario.getPersona().getApeMat()+"',"
-					+ "'"+usuario.getPersona().getSexo()+"','"+usuario.getPersona().getDirecPer()+"',"
-					+ "'"+usuario.getPersona().getCorreo()+"','"+usuario.getPersona().getTelefono()+"',"
-					+ "'"+usuario.getPersona().getSede_idSede()+"')";
-			System.out.println(query);
-			int fila =stmt.executeUpdate(query);
-			if(fila==1){
-					PreparedStatement pstmt;
-					pstmt = con.prepareStatement("insert into usuario (codUsuario,usuario,clave,estadoUsu,rol_idRol) "
-							+ "values('"+codigo+"','"+usuario.getUsuario()+"',"
+				String query= ("insert into usuario (codUsuario,usuario,clave,estadoUsu,rol_idRol) "
+							+ "values('"+usuario.getCodUsuario()+"','"+usuario.getUsuario()+"',"
 							+ "'"+usuario.getClave()+"','1','5')");
-					System.out.println(pstmt);
-					pstmt.executeUpdate();
-					
-				flag=true;
-			}
+					System.out.println(query);
+
+					int fila =stmt.executeUpdate(query);
+					if(fila==1){
+						flag=true;
+					}
+			
 			con.close();
 		} catch (Exception e) {
 			// TODO: handle exception

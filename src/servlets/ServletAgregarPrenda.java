@@ -74,11 +74,19 @@ public class ServletAgregarPrenda extends HttpServlet {
 					
 					DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 					I_Prenda prendadao=dao.getPrendaDao();
+					String nombre=request.getParameter("nuevonombre");
 					
+					
+					boolean flag2=prendadao.existePrenda(nombre);
+					if(flag2){
+						System.out.println("pase por servelt existeprenda? ");
+						request.setAttribute("msj","La prenda que desea agregar parece que existe :(");
+						request.getRequestDispatcher("/Administrador/AgregarPrenda.jsp").forward(request, response);
+					}else{
+						
 					TipoPrendaBean prenda = new TipoPrendaBean();
 					prenda.setNomTip(request.getParameter("nuevonombre"));
 					prenda.setDescripcion(request.getParameter("nuevadescripcion"));
-					
 					boolean flag=prendadao.agregarPrenda(prenda);
 					
 					if(flag){
@@ -96,6 +104,8 @@ public class ServletAgregarPrenda extends HttpServlet {
 					}
 					
 					request.getRequestDispatcher("/Administrador/MantenerPrenda.jsp").forward(request, response);
+				}	
+					
 				}else{
 					request.setAttribute("mensaje", "Ingrese nuevamente.");
 					request.getRequestDispatcher("/login.jsp").forward(request, response);

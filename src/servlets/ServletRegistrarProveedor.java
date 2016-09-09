@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.Vector;
 
 import javax.servlet.ServletException;
@@ -54,20 +55,24 @@ public class ServletRegistrarProveedor extends HttpServlet {
 						DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 						I_Proveedor proveedordao=dao.getProveedorDao();
 						Vector<ProveedorBean> proveedor= proveedordao.listarProveedores();
+						System.out.print("llega aqui 1 ?  " +request.getParameter("ruc"));
+		
 						boolean flag=false;
 						if(proveedor.size()>0){
+							
 							request.setAttribute("proveedor", proveedor);
 							Vector<ProveedorBean> proveedorB= proveedordao.buscarProveedor(Integer.parseInt(request.getParameter("ruc")));
 							if(proveedorB.size()>0){
 								request.setAttribute("msj2", "Lo sentimos, este proveedor ya existe.");
 							}else{
-								
+								System.out.print("llega aqui 3");
 								ProveedorBean datosPr=new ProveedorBean();
 								datosPr.setIdProveedor(Integer.parseInt(request.getParameter("ruc")));
 								datosPr.setRazonSoc(request.getParameter("razonSoc"));;
 								datosPr.setDirecProve(request.getParameter("direccion"));
 								datosPr.setTelefono(request.getParameter("telefono"));
 								flag=proveedordao.agregarProveedor(datosPr);
+								
 								
 								if(flag){
 									request.setAttribute("msj1", "Registro satisfactorio");
@@ -78,8 +83,9 @@ public class ServletRegistrarProveedor extends HttpServlet {
 						}else{
 							request.setAttribute("msj", "Error.");
 						}
-					} catch (Exception e) {
+					} catch (NumberFormatException  e) {
 						System.out.print(e.getMessage());
+						e.printStackTrace();
 					}
 					request.getRequestDispatcher("/EncargadoCompras/RegistrarProveedor.jsp").forward(request, response);
 				}else{
@@ -88,11 +94,18 @@ public class ServletRegistrarProveedor extends HttpServlet {
 				}
 			} catch (Exception e) {
 				out.println(e.getMessage());
+				e.printStackTrace();
 			}
 		}else{
 			request.setAttribute("mensaje", "Ingrese nuevamente.");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
+	
+	public static void main(String[] args) {
+		Integer a = new Integer("12345678909");
+		System.out.print(a);
+	}
+	
 
 }

@@ -8,7 +8,9 @@
 <%if(user==null){
 	request.setAttribute("mensaje", "No inicio sesión");
 	request.getRequestDispatcher("/login.jsp").forward(request, response);
-}else{%>
+}else{
+	String msj=(String)request.getAttribute("msj");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <head>
 <%Vector<OrdenCompraBean> ordenes = (Vector<OrdenCompraBean> ) request.getAttribute("ordenes"); 
@@ -43,6 +45,11 @@ String mensaje=(String)request.getAttribute("msj");%>
 						<button class="btn btn-danger" type="button" onclick="location.href='<%=request.getContextPath()%>/MantenerPrenda'">Cancelar</button>
 					</form>
   				</div>
+  			<%if(msj!=null){ %>
+  			<div class="col-sm-12">
+							<div class="alert alert-danger"><%=msj%></div>
+						</div>
+						<%} %>
   			
 			</div>
 </div>

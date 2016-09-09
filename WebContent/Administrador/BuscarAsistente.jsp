@@ -40,18 +40,21 @@
 							<div class="col-md-6">
 								<label for="buscaOrden" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Datos Personales</label><br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" value="" >Código :</label> <input name="id" class="form-control" value="<%=usuario.getCodUsuario()%>" readonly="readonly"></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Nombre : </label> <input name="nombre" class="form-control" value="<%=usuario.getPersona().getNomPer() %>" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Apellido Paterno: </label> <input name="apepat" class="form-control"  value="<%=usuario.getPersona().getApePat() %>" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Apellido Materno : </label> <input name="apemat" class="form-control"  value="<%=usuario.getPersona().getApeMat() %>" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Dirección : </label> <input name="direccion" class="form-control" value="<%=usuario.getPersona().getDirecPer() %>"  required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Telefono : </label> <input name="telefono" class="form-control" value="<%=usuario.getPersona().getTelefono() %>" required></br>
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Correo : </label> <input name="correo" class="form-control" value="<%=usuario.getPersona().getCorreo() %>" required></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Nombre : </label> <input name="nombre" class="form-control" value="<%=usuario.getPersona().getNomPer() %>" readonly="readonly"></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Apellido Paterno: </label> <input name="apepat" class="form-control"  value="<%=usuario.getPersona().getApePat() %>" readonly="readonly"></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Apellido Materno : </label> <input name="apemat" class="form-control"  value="<%=usuario.getPersona().getApeMat() %>" readonly="readonly"></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Dirección : </label> <input name="direccion" class="form-control" value="<%=usuario.getPersona().getDirecPer() %>"  readonly="readonly"></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Telefono : </label> <input name="telefono" class="form-control" value="<%=usuario.getPersona().getTelefono() %>" readonly="readonly"></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Correo : </label> <input name="correo" class="form-control" value="<%=usuario.getPersona().getCorreo() %>" readonly="readonly"></br>
 							</div>
 							<div class="col-md-6">
 								<label for="buscaOrden" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Datos de Usuario</label><br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Usuario : </label> <input name="usuario" class="form-control" value="<%=usuario.getUsuario() %>" required></br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Sede : </label> <input name="sede" class="form-control" value="<%=usuario.getPersona().getSede().getNomSede() %>" readonly="readonly"></br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Rol: </label> <input name="rol" class="form-control"  value="<%=usuario.getRol().getNomTipo() %>" readonly="readonly"></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Contraseña : </label> <input name="clave" id="pass1" type="password" class="form-control" required></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Repetir Contraseña: </label> <input name="clave" id="pass2" type="password" class="form-control" required></br>
+								<label id="msj2" class="control-label" style="text-align: left; font-size: 15px; color: red;" ></label>
 							</div>
 						</div>
 						<button class="btn btn-primary" type="submit">Modificar</button>

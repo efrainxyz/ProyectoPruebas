@@ -72,7 +72,7 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 						<div class="col-sm-6" style="text-align: left;">
 							<label for="usuario" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">C&oacute;digo:</label>
 							<div class="col-sm-6" style="text-align: left;">
-								<input class="form-control" readonly="readonly" type="text" value="<%=proveedor.getIdProveedor()%>">
+								<input class="form-control" readonly="readonly" type="text" value="<%=detalleorden.get(1).getOrden().getProveedor().getIdProveedor()%>">
 							</div>
 						</div>
 						<div class="col-sm-6" style="text-align: left;">
@@ -83,7 +83,7 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 						<div class="col-sm-6" style="text-align: left;">
 							<label for="usuario" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">Raz&oacute;n Social:</label>
 							<div class="col-sm-6" style="text-align: left;">
-								<input class="form-control" readonly="readonly" type="text" value="<%=proveedor.getRazonSoc()%>">
+								<input class="form-control" readonly="readonly" type="text" value="<%=detalleorden.get(1).getOrden().getProveedor().getRazonSoc()%>">
 							</div>
 						</div>
 						<div class="col-sm-6" style="text-align: left;">
@@ -94,7 +94,7 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 						<div class="col-sm-6" style="text-align: left;">
 							<label for="usuario" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">Direcci&oacute;n:</label>
 							<div class="col-sm-6" style="text-align: left;">
-								<input class="form-control" readonly="readonly" type="text" value="<%=proveedor.getDirecProve()%>">
+								<input class="form-control" readonly="readonly" type="text" value="<%=detalleorden.get(1).getOrden().getProveedor().getDirecProve()%>">
 							</div>
 						</div>
 						<div class="col-sm-6" style="text-align: left;">
