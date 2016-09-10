@@ -148,13 +148,25 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 				    </form>
 				    <div  class="col-sm-12 form-group" style="text-align:left;">
                 		<br>
-                		<button class="btn-large btn btn-primary" onclick="insertarDetalle()" type="button"><b>Agregar Prenda</b></button>
+                		<button class="btn-large btn btn-primary" id="btnAgregar" onclick="insertarDetalle()" type="button"><b>Agregar Prenda</b></button>
                 		<br>
                 		<script>
 							function insertarDetalle() {
 								if(document.getElementById("codPrenda").value==""){
 									document.getElementById("errorAgregar").style.display = "block";
 								}else{
+									
+									var cod=document.getElementById("codPrenda").value;
+									var nom=document.getElementById("nomPrenda").value;
+									var tall=document.getElementById("prendaTalla").value;
+									alert(cod+" "+nom+" "+tall);
+									
+									
+									
+									if(recorrerTabla(cod,tall)==true){
+										
+										alert("Usted ya agrego este producto");
+									}else{
 									document.getElementById("errorAgregar").style.display = "none";
 									var boton = document.createElement("button");
 									boton.type = "button";
@@ -164,7 +176,7 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 									
 									var hddcod = document.createElement('input');
 									hddcod.type='hidden';
-									hddcod.name = 'codigoPrenda'; 
+									hddcod.name = 'codigoPrenda';
 									hddcod.value= document.getElementById("codPrenda").value;
 									
 									var hddtalla = document.createElement('input');
@@ -197,15 +209,51 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 								    cell6.innerHTML = document.getElementById("precioTotalPrenda").value;
 								    cell7.appendChild(boton);
 								    document.getElementById("montoTotal").value=parseFloat(document.getElementById("montoTotal").value.replace(",", "."))+parseFloat(document.getElementById("precioTotalPrenda").value.replace(",", "."));
+									}
 								}
 							}
-							function eliminarDetalle(t){
+								function eliminarDetalle(t){
 								var td = t.parentNode;
 						        var tr = td.parentNode;
 						        var table = tr.parentNode;
 						        table.removeChild(tr);
 						        document.getElementById("montoTotal").value=parseFloat(document.getElementById("montoTotal").value.replace(",", "."))-parseFloat(tr.cells[5].innerText.replace(",", "."));
 							}
+							
+							function recorrerTabla(cod,tall){
+								var tableReg = document.getElementById('tabla');
+								
+								var cellsOfRow="";
+								var found=false;
+								var compareWith="";
+					 		
+								
+								// Recorremos todas las filas con contenido de la tabla
+								for (var i = 1; i < tableReg.rows.length; i++){
+										cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+										
+										// Recorremos todas las celdas
+										for (var j = 0; j < 3 && !found; j++)
+										{
+											compareWith = cellsOfRow[j].innerHTML.toUpperCase();
+											// Buscamos el texto en el contenido de la celda
+											if ((compareWith.indexOf(tall) > -1) && (compareWith.indexOf(cod) > -1))
+											{
+												found = true;
+											}
+										}
+								}
+								
+								return found;
+							}
+							
+								
+								
+							
+							
+								
+								
+							
 						</script>
                  	</div>
                  	<div class="col-sm-12 form-group alert alert-danger" style="display: none;" id="errorAgregar">Buscar la prenda que desee agregar</div>

@@ -58,7 +58,7 @@ public class MySql_SedeRepartoDao extends MySQLDaoFactory implements I_SedeRepar
 		Vector<SedeXTipoPrendaBean> sedesxtipo = new Vector<SedeXTipoPrendaBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="select *, count(*) as cantidadTotal from sedextipoprenda a INNER JOIN sede b ON a.idSede=b.idSede INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip where a.estado='1' group by a.idTipoPrenda";
+			String query="select *, sum(a.cantidad) as cantidadTotal from sedextipoprenda a INNER JOIN sede b ON a.idSede=b.idSede INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip where a.estado='1' group by a.idTipoPrenda";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			SedeXTipoPrendaBean objsedexprenda=null;
