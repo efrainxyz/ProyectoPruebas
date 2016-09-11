@@ -235,6 +235,7 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 										// Recorremos todas las celdas
 										for (var j = 0; j < 3 && !found; j++)
 										{
+												alert("EL valor  "+cellsOfRow[j].innerHTML.toString());
 											compareWith = cellsOfRow[j].innerHTML.toUpperCase();
 											// Buscamos el texto en el contenido de la celda
 											if ((compareWith.indexOf(tall) > -1) && (compareWith.indexOf(cod) > -1))

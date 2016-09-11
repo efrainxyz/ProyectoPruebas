@@ -22,6 +22,8 @@ Vector<SedeXTipoPrendaBean> prendasSede=(Vector<SedeXTipoPrendaBean>)request.get
 Vector<SedeXTipoPrendaBean> stockPrendas=(Vector<SedeXTipoPrendaBean>)request.getAttribute("stockPrendas");
 Vector<TipoPrendaBean> tiposPrenda=(Vector<TipoPrendaBean>)request.getAttribute("tiposPrenda");
 Vector<SedeBean> listaSedes=(Vector<SedeBean>)request.getAttribute("listaSedes");
+
+
 int a=0;%>
  	<meta name="viewport" content="width=device-width" />
     <link rel="icon" href="<%=request.getContextPath()%>/images/bcp.ico">
@@ -98,20 +100,21 @@ int a=0;%>
  							<tr class="btn-primary">
  								<th style="text-align: center;" valign="middle">Sede/Prenda</th>
  								<% for(int i=0;i<tiposPrenda.size();i++){%>	
- 									<th style="text-align: center;" valign="middle"><%=tiposPrenda.get(i).getNomTip()%></th>
+ 									<th style="text-align: center;" valign="middle"><%=prendasSede.get(i).getTipoPrenda().getNomTip()%></th>
  								<%}%>
 					 			<th style="text-align: center;" valign="middle">Estado</th>
 					 			<th style="text-align: center;" valign="middle">Acci&oacute;n</th>
 					 		</tr>
 						</thead>
  						<tbody>
-		 					<% for(int i=0;i<listaSedes.size();i++){a+=4;%>
+		 					<% int co=0; for(int i=0;i<listaSedes.size();i++){a+=4;
+		 					 %>
 		 						
-		 					<tr>
+		 					<tr> 
 					 			<td style="text-align: center; vertical-align:middle;"><%=listaSedes.get(i).getNomSede()%></td>
-					 			<% for(int j=0;j<tiposPrenda.size();j++){%>	
-					 			<td style="text-align: center; vertical-align:middle;"><%=prendasSede.get(j).getCantidad()%></td>
-					 			<%}%>
+					 			<%for(int j=0;j<tiposPrenda.size();j++){%>	
+					 			<td style="text-align: center; vertical-align:middle;"><%=prendasSede.get(j+co).getCantidad()%></td>
+					 			<%} co+=5;%>
 					 			<td style="text-align: center; vertical-align:middle;"><%if(prendasSede.get(i+a).getEstado().equals("1")){%>Pendiente<%}else{%>Entregado<%}%></td>
 					 			<td style="text-align: center; vertical-align:middle;">
 					 			

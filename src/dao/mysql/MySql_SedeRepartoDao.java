@@ -98,7 +98,7 @@ public class MySql_SedeRepartoDao extends MySQLDaoFactory implements I_SedeRepar
 		Vector<SedeXTipoPrendaBean> sedesxtipo = new Vector<SedeXTipoPrendaBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="select * from sedextipoprenda a INNER JOIN sede b ON a.idSede=b.idSede INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip order by b.nomSede, c.idTip";
+			String query="select * from sedextipoprenda a INNER JOIN sede b ON a.idSede=b.idSede INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip  order by b.idSede, c.idTip";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			SedeXTipoPrendaBean objsedexprenda=null;
@@ -137,7 +137,7 @@ public class MySql_SedeRepartoDao extends MySQLDaoFactory implements I_SedeRepar
 		Vector<SedeBean> sedesxtipo = new Vector<SedeBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="select * from sedextipoprenda a INNER JOIN sede b ON a.idSede=b.idSede INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip group by a.idSede order by b.nomSede";
+			String query="select * from sedextipoprenda a INNER JOIN sede b ON a.idSede=b.idSede INNER JOIN tipoprenda c ON a.idTipoPrenda=c.idTip group by a.idSede";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			SedeBean sede=null;
@@ -184,7 +184,7 @@ public class MySql_SedeRepartoDao extends MySQLDaoFactory implements I_SedeRepar
 		Vector<SedeBean> sedes = new Vector<SedeBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="select * from sede ";
+			String query="select * from sede";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			SedeBean sede=null;
