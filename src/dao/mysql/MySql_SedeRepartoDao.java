@@ -13,6 +13,7 @@ import daofactory.MySQLDaoFactory;
 
 public class MySql_SedeRepartoDao extends MySQLDaoFactory implements I_SedeReparto {
 
+	
 	@Override
 	public boolean registrarSedeStock() throws Exception {
 		// TODO Auto-generated method stub
