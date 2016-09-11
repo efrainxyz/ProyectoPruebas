@@ -80,7 +80,7 @@ public class ServletAgregarPrenda extends HttpServlet {
 					boolean flag2=prendadao.existePrenda(nombre);
 					if(flag2){
 						System.out.println("pase por servelt existeprenda? ");
-						request.setAttribute("msj","La prenda que desea agregar parece que existe :(");
+						request.setAttribute("msj","La prenda que desea agregar ya existe	");
 						request.getRequestDispatcher("/Administrador/AgregarPrenda.jsp").forward(request, response);
 					}else{
 						

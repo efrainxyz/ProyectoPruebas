@@ -46,7 +46,9 @@ String mensaje=(String)request.getAttribute("msj");%>
 					</form>
   				</div>
   			<%if(msj!=null){ %>
+  			<br>
   			<div class="col-sm-12">
+  			
 							<div class="alert alert-danger"><%=msj%></div>
 						</div>
 						<%} %>

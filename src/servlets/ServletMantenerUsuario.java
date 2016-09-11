@@ -56,7 +56,7 @@ public class ServletMantenerUsuario extends HttpServlet {
 						request.setAttribute("usuario", usuarios);
 						
 					}else{
-						request.setAttribute("msj", "No hay prendas registradas");
+						request.setAttribute("msj2", "No hay asistentes registrados");
 					}
 					request.getRequestDispatcher("/Administrador/MantenerAsistente.jsp").forward(request, response);
 					

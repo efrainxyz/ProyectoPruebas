@@ -61,7 +61,7 @@ String mensaje2=(String)request.getAttribute("msj2");
 					<form name="form" method="post"  action="<%=request.getContextPath()%>/AgregarAsistente?accion=verificar" >
 						<div class="row">
 							<div class="col-md-12">
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Codigo de usuario : </label> <input name="codusuario" class="form-control" required></br>
+								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Codigo de persona : </label> <input name="codusuario" class="form-control" required></br>
 							</div>
 						</div>
 						<button class="btn btn-success" type="submit">Verificar</button></br>
@@ -76,7 +76,7 @@ String mensaje2=(String)request.getAttribute("msj2");
 					<form name="form1" method="post" onsubmit="return comprobarClave()" action="<%=request.getContextPath()%>/AgregarAsistente?accion=agregar" >
 						<div class="row">
 							<div class="col-md-12">
-								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Codigo de usuario : </label> <input name="codusuario2" value="<%=request.getAttribute("codusuario") %>" class="form-control" readonly="readonly"></br>
+								<input name="codusuario2" class="hidden	" value="<%=request.getAttribute("codusuario") %>" class="form-control" readonly="readonly"></br>
 								<label for="agregarAsistente" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">Datos de Usuario</label><br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Usuario : </label> <input name="usuario" class="form-control" value="<%=request.getAttribute("correo") %>" readonly="readonly"></br>
 								<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Contraseña : </label> <input name="clave" id="pass1" type="password" class="form-control" required></br>

@@ -53,7 +53,13 @@ String mensaje=(String)request.getAttribute("msj");%>
 					 			<td style="text-align: center; vertical-align:middle;">
 					 			<button class="btn-large btn btn-primary" type="button" onClick="window.opener.document.all.idOrden.value='<%=ordenes.get(i).getIdOrdenCompra()%>';
   								window.opener.document.all.nroOrden.value='<%=ordenes.get(i).getIdOrdenCompra()%>';
-  								window.opener.document.all.fecha.value='<%=ordenes.get(i).getFechEmision()%>';window.close()"><b>seleccionar</b></button>
+  								window.opener.document.all.fecha.value='<%=ordenes.get(i).getFechEmision()%>';
+  								window.opener.document.all.codigoProveedor.value='<%=ordenes.get(i).getProveedor_idProveedor()%>';
+  								window.opener.document.all.codigoProveedor.value='<%=ordenes.get(i).getProveedor_idProveedor()%>';
+  								window.opener.document.all.razonSocial.value='<%=ordenes.get(i).getProveedor().getRazonSoc()%>';
+  								window.opener.document.all.direccion.value='<%=ordenes.get(i).getProveedor().getDirecProve()%>';
+  								
+  								window.close()"><b>seleccionar</b></button>
 					 			</td>
 					 		</tr>
 				 			<%}%>

@@ -77,7 +77,7 @@ Vector<TipoPrendaBean> prendas=(Vector<TipoPrendaBean>)request.getAttribute("pre
 					 			<td style="text-align: center; vertical-align:middle;"><%=prendas.get(i).getIdTip()%></td>
 					 			<td style="text-align: center; vertical-align:middle;"><%=prendas.get(i).getNomTip()%></td>
 					 			<td style="text-align: center; vertical-align:middle;"><%=prendas.get(i).getDescripcion()%></td> 
-					 			<td style="text-align: center; vertical-align:middle;"><button class="btn-large btn btn-succes" type="button" onClick="location.href='<%=request.getContextPath()%>/buscarPrenda?id=<%=prendas.get(i).getIdTip()%>&nombre=<%=prendas.get(i).getNomTip() %>'" ><b>Modificar</b></button></td>
+					 			<td style="text-align: center; vertical-align:middle;"><button class="btn-large btn btn-succes" type="button" onClick="location.href='<%=request.getContextPath()%>/buscarPrenda?id=<%=prendas.get(i).getIdTip()%>&nombre=<%=prendas.get(i).getNomTip() %>&descripcion=<%=prendas.get(i).getDescripcion() %>'" ><b>Modificar</b></button></td>
 					 			<td style="text-align: center; vertical-align:middle;"><%if(prendas.get(i).getEstado()==1){ %><button class="btn-large btn btn-info" type="button" onClick="location.href='<%=request.getContextPath()%>/estadoTipoPrenda?id=<%=prendas.get(i).getIdTip()%>&estado=<%=prendas.get(i).getEstado()%>'"><b>Bloquear</b></button><%}
 					 			else{%><button class="btn-large btn btn-danger" type="button" onClick="location.href='<%=request.getContextPath()%>/estadoTipoPrenda?id=<%=prendas.get(i).getIdTip()%>&estado=<%=prendas.get(i).getEstado()%>'"><b>Habilitar</b></button> <%}%></td>
 	 							

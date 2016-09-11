@@ -28,7 +28,7 @@
 <div class="container-fluid">
             <div class="row">
             	<div class="col-sm-12" style="text-align:left;">
-                	<label for="buscaOrden" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">El producto a modificar : <%=request.getParameter("nombre") %></label>
+                	<label for="buscaOrden" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">El producto a modificar :</label>
                  </div>
                  
             	<div class="col-sm-12">
@@ -38,8 +38,8 @@
 					
 					<input type="hidden" name="id" value="<%=request.getParameter("id") %>">
 					<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" name="id" value="" >Código : <%=request.getParameter("id") %></label></br>
-					<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Nuevo nombre : </label> <input name="nuevonombre" class="form-control" required></br>
-					<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Nueva descripcion : </label> <input name="nuevadescripcion" class="form-control" required></br></br>
+					<br><label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Nombre : </label> <input name="nuevonombre" class="form-control" value="<%=request.getParameter("nombre")%>" required></br>
+					<label class="control-label" style="text-align: left; font-size: 15px; color: darkblue;" >Descripcion : </label> <input name="nuevadescripcion" class="form-control" value="<%=request.getParameter("descripcion")%>" required></br></br>
 					<button class="btn btn-primary" type="submit">Modificar</button>
 					<button class="btn btn-danger" type="button" onclick="location.href='<%=request.getContextPath()%>/MantenerPrenda'">Cancelar</button>
 					</form>

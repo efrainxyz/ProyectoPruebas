@@ -189,19 +189,26 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 		Vector<OrdenCompraBean> ordenes = new Vector<OrdenCompraBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="SELECT idOrdenCompra,date(fechEmision) as fechEmision,estadoOrdCom,montoTotal,persona_idPersona,proveedor_idProveedor FROM ordencompra where estadoOrdCom='2' order by fechEmision desc";
+			String query="SELECT a.idOrdenCompra,date(a.fechEmision) as 	,a.estadoOrdCom,a.montoTotal,a.persona_idPersona,a.proveedor_idProveedor,b.razonSoc,b.direcProve FROM ordencompra a INNER JOIN proveedor b ON a.proveedor_idProveedor=b.idProveedor  where estadoOrdCom='2' order by fechEmision desc";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			OrdenCompraBean objorden=null;
+			ProveedorBean objdatopro=null;
 			while( rs.next() ){
 				objorden=new OrdenCompraBean();
-				objorden.setIdOrdenCompra(rs.getString("idOrdenCompra"));
+				objorden.setIdOrdenCompra(rs.getString("a.idOrdenCompra"));
 				objorden.setFechEmision(rs.getString("fechEmision"));
-				objorden.setEstadoOrdCom(rs.getString("estadoOrdCom"));
-				objorden.setMontoTotal(rs.getDouble("montoTotal"));
-				objorden.setPersona_idPersona(rs.getInt("persona_idPersona"));
-				objorden.setProveedor_idProveedor(rs.getString("proveedor_idProveedor"));
+				objorden.setEstadoOrdCom(rs.getString("a.estadoOrdCom"));
+				objorden.setMontoTotal(rs.getDouble("a.montoTotal"));
+				objorden.setPersona_idPersona(rs.getInt("a.persona_idPersona"));
+				objorden.setProveedor_idProveedor(rs.getString("a.proveedor_idProveedor"));
 				
+				objdatopro =new ProveedorBean();
+				objdatopro.setRazonSoc(rs.getString("b.razonSoc"));
+				objdatopro.setDirecProve(rs.getString("b.direcProve"));
+				objorden.setProveedor(objdatopro);
+
+                 
 				ordenes.add(objorden);
 			}
 			con.close();

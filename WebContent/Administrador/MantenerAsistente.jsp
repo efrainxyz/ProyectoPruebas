@@ -52,11 +52,11 @@ Vector<UsuarioBean> usuario=(Vector<UsuarioBean>) request.getAttribute("usuario"
 						<div class="col-sm-12">
 							<div class="alert alert-success"><%=mensaje%></div>
 						</div>
-					<%}if(mensaje2!=null){%>
+					<%}else if(mensaje2!=null){%>
 						<div class="col-sm-12">
 							<div class="alert alert-danger"><%=mensaje2%></div>
 						</div>
-					<%} %>
+					<%}else{ %>
 						
 						
 					
@@ -94,7 +94,7 @@ Vector<UsuarioBean> usuario=(Vector<UsuarioBean>) request.getAttribute("usuario"
 			 			</tbody>
 				  		</table>
   					</div>
-  					
+  					<%} %>
   					<div class="col-sm-12" style="text-align:center;">
   						<br>
   						<button class="btn-large btn btn-success" onclick="location.href='<%=request.getContextPath()%>/AgregarAsistente'">Agregar</button>

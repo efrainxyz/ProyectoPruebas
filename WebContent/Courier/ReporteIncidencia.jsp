@@ -41,44 +41,8 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
                  	<%if(mensaje1!=null){%>
 						<div class="col-sm-12 form-group alert alert-success"><%=mensaje1%></div>
 					<%}%>
-                 	<div class="col-sm-12" style="text-align:left;">
-                		<br>
-                		<label for="datosProveedor" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">DATOS DEL PROVEEDOR</label>
-                 	</div>
-                    <div class="col-sm-12 form-group">
-						<div class="col-sm-6" style="text-align: left;">
-							<label for="codigoProveedor" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">C&oacute;digo:</label>
-							<div class="col-sm-6" style="text-align: left;">
-								<input class="form-control" readonly="readonly" type="text" value="<%=proveedor.getIdProveedor()%>">
-							</div>
-						</div>
-						<div class="col-sm-6" style="text-align: left;">
-							
-						</div>
-				    </div>
-				    <div class="col-sm-12 form-group">
-						<div class="col-sm-6" style="text-align: left;">
-							<label for="razonSocial" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">Raz&oacute;n Social:</label>
-							<div class="col-sm-6" style="text-align: left;">
-								<input class="form-control" readonly="readonly" type="text" value="<%=proveedor.getRazonSoc()%>">
-							</div>
-						</div>
-						<div class="col-sm-6" style="text-align: left;">
-							
-						</div>
-				    </div>
-				    <div class="col-sm-12 form-group">
-						<div class="col-sm-6" style="text-align: left;">
-							<label for="direccion" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">Direcci&oacute;n:</label>
-							<div class="col-sm-6" style="text-align: left;">
-								<input class="form-control" readonly="readonly" type="text" value="<%=proveedor.getDirecProve()%>">
-							</div>
-						</div>
-						<div class="col-sm-6" style="text-align: left;">
-							
-						</div>
-				    </div>
-                	<div class="col-sm-12" style="text-align:left;">
+					
+					<div class="col-sm-12" style="text-align:left;">
                 		<br>
                 		<label for="datosOrden" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">DATOS DE LA ORDEN DE COMPRA</label>
                  	</div>
@@ -109,6 +73,44 @@ ProveedorBean proveedor=(ProveedorBean)request.getAttribute("proveedor");%>
 				    </div>
 				    <div class="col-sm-12 form-group alert alert-danger" style="display: none;" id="errorOrden">Busque la orden de compra la cual reportara la incidencia</div>
                  	</form>
+                 	<div class="col-sm-12" style="text-align:left;">
+                		<br>
+                		<label for="datosProveedor" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">DATOS DEL PROVEEDOR</label>
+                 	</div>
+                    <div class="col-sm-12 form-group">
+						<div class="col-sm-6" style="text-align: left;">
+							<label for="codigoProveedor" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">C&oacute;digo:</label>
+							<div class="col-sm-6" style="text-align: left;">
+								<input class="form-control" readonly="readonly" type="text" value="" name="codigoProveedor" id="codigoProveedor">
+							</div>
+						</div>
+						<div class="col-sm-6" style="text-align: left;">
+							
+						</div>
+				    </div>
+				    <div class="col-sm-12 form-group">
+						<div class="col-sm-6" style="text-align: left;">
+							<label for="razonSocial" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">Raz&oacute;n Social:</label>
+							<div class="col-sm-6" style="text-align: left;">
+								<input class="form-control" readonly="readonly" type="text" value="" name="razonSocial" id="razonSocial">
+							</div>
+						</div>
+						<div class="col-sm-6" style="text-align: left;">
+							
+						</div>
+				    </div>
+				    <div class="col-sm-12 form-group">
+						<div class="col-sm-6" style="text-align: left;">
+							<label for="direccion" class="col-sm-6 control-label" style="text-align: right; font-size: 20px;">Direcci&oacute;n:</label>
+							<div class="col-sm-6" style="text-align: left;">
+								<input class="form-control" readonly="readonly" type="text" value="" name="direccion" id="direccion">
+							</div>
+						</div>
+						<div class="col-sm-6" style="text-align: left;">
+							
+						</div>
+				    </div>
+                	
 				    <div class="col-sm-12" style="text-align:left;">
                 		<br>
                 		<label for="datosColaborador" class="control-label" style="text-align: left; font-size: 30px; color: darkblue;">DESCRIPCI&Oacute;N DE LA INCIDENCIA</label>

@@ -45,9 +45,11 @@ public class ServletBuscarPrenda extends HttpServlet {
 					
 					int id=Integer.parseInt( request.getParameter("id"));
 					String nombre=request.getParameter("nombre");
+					String descripcion=request.getParameter("descripcion");
 					
 					request.setAttribute("id", id);
 					request.setAttribute("nombre",nombre);
+					request.setAttribute("descripcion", descripcion);
 					request.getRequestDispatcher("/Administrador/BuscarPrenda.jsp").forward(request, response);
 					
 				}else{
