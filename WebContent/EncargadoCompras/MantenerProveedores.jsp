@@ -50,11 +50,12 @@ Vector<ProveedorBean> proveedores=(Vector<ProveedorBean>)request.getAttribute("p
 						<table id="tabla" class="table table-hover table-bordered">
 	 						<thead>
 	 							<tr class="btn-primary">
-	 								<th style="text-align: center;" valign="middle">C&oacute;digo del proveedor</th>
+	 								<th style="text-align: center;" valign="middle">RUC del proveedor</th>
 						 			<th style="text-align: center;" valign="middle">Raz&oacute;n Social</th>
 						 			<th style="text-align: center;" valign="middle">Direcci&oacute;n</th>
 						 			<th style="text-align: center;" valign="middle">Telefono</th>
-						 			<th style="text-align: center;" valign="middle">Acci&oacute;n</th>
+						 			<th style="text-align: center;" valign="middle">Modificar</th>
+						 			<th style="text-align: center;" valign="middle">Eliminar</th>
 						 		</tr>
 							</thead>
 	 						<tbody>
@@ -64,11 +65,14 @@ Vector<ProveedorBean> proveedores=(Vector<ProveedorBean>)request.getAttribute("p
 						 			<td style="text-align: center; vertical-align:middle;"><%=proveedores.get(i).getRazonSoc()%></td>
 						 			<td style="text-align: center; vertical-align:middle;"><%=proveedores.get(i).getDirecProve()%></td>
 						 			<td style="text-align: center; vertical-align:middle;"><%=proveedores.get(i).getTelefono()%></td>
-						 			<!--  AUN FALTA PROGRAMAR MODIFICAR Y ELIMINAR -->
 						 			<td style="text-align: center; vertical-align:middle;">
 						 				<button class="btn-large btn btn-info" type="button" onClick="location.href='<%=request.getContextPath()%>/ModificarProveedor?id=<%=proveedores.get(i).getIdProveedor()%>'"><b>Modificar</b></button>
-							 			<button class="btn-large btn btn-danger" type="button" onClick="if(confirm('¿Estas seguro de eliminar al proveedor?')){location.href='<%=request.getContextPath()%>/EliminarProveedor?id=<%=proveedores.get(i).getIdProveedor()%>'}else{return false;}"><b>Eliminar</b></button>
-							 		</td>
+						 			</td>
+									<td style="text-align: center; vertical-align:middle;">
+							 			<%if(proveedores.get(i).getEstado()==1){ %><button class="btn-large btn btn-info" type="button" onClick="location.href='<%=request.getContextPath()%>/EstadoProveedor?id=<%=proveedores.get(i).getIdProveedor()%>&estado=<%=proveedores.get(i).getEstado()%>'"><b>Bloquear</b></button><%}
+					 					else{%><button class="btn-large btn btn-danger" type="button" onClick="location.href='<%=request.getContextPath()%>/EstadoProveedor?id=<%=proveedores.get(i).getIdProveedor()%>&estado=<%=proveedores.get(i).getEstado()%>'"><b>Habilitar</b></button> <%}%>
+					 				</td>
+							 		
 		 						</tr>
 					 			<%}%>
 				 			</tbody>

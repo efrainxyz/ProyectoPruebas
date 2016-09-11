@@ -11,8 +11,9 @@ public interface I_Proveedor {
 	public Proveedor_TipoPrendaBean obtenerDatosPrenda(int codigoPrenda)throws Exception;
 	public Vector<ProveedorBean> listarProveedores() throws Exception;
 	public boolean agregarProveedor(ProveedorBean proveedor) throws Exception;
-	public Vector<ProveedorBean> buscarProveedor(int id_proveedor) throws Exception;
-	public boolean eliminarProveedor(int idProveedor) throws Exception;
-	public ProveedorBean buscarProveedor2(int id_proveedor) throws Exception ;
+	public Vector<ProveedorBean> buscarProveedor(String id_proveedor) throws Exception;
+	public ProveedorBean buscarProveedor2(String id_proveedor) throws Exception ;
 	public boolean modificarProveedor(ProveedorBean proveedor) throws Exception;
+	public boolean estadoProveedor(String id , int estado) throws Exception;
+	public Vector<ProveedorBean> listarProveedorXEstado() throws Exception;
 }

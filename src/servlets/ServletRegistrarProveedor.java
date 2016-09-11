@@ -55,19 +55,17 @@ public class ServletRegistrarProveedor extends HttpServlet {
 						DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 						I_Proveedor proveedordao=dao.getProveedorDao();
 						Vector<ProveedorBean> proveedor= proveedordao.listarProveedores();
-						System.out.print("llega aqui 1 ?  " +request.getParameter("ruc"));
-		
+						
 						boolean flag=false;
 						if(proveedor.size()>0){
 							
 							request.setAttribute("proveedor", proveedor);
-							Vector<ProveedorBean> proveedorB= proveedordao.buscarProveedor(Integer.parseInt(request.getParameter("ruc")));
+							Vector<ProveedorBean> proveedorB= proveedordao.buscarProveedor(request.getParameter("ruc"));
 							if(proveedorB.size()>0){
 								request.setAttribute("msj2", "Lo sentimos, este proveedor ya existe.");
 							}else{
-								System.out.print("llega aqui 3");
 								ProveedorBean datosPr=new ProveedorBean();
-								datosPr.setIdProveedor(Integer.parseInt(request.getParameter("ruc")));
+								datosPr.setIdProveedor(request.getParameter("ruc"));
 								datosPr.setRazonSoc(request.getParameter("razonSoc"));;
 								datosPr.setDirecProve(request.getParameter("direccion"));
 								datosPr.setTelefono(request.getParameter("telefono"));

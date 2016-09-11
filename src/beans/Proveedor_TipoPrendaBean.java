@@ -1,15 +1,15 @@
 package beans;
 
 public class Proveedor_TipoPrendaBean {
-	int idProveedor;
+	String idProveedor;
 	int idTipoPrenda;
 	double precioUnitario;
 	ProveedorBean proveedor;
 	TipoPrendaBean tipoPrenda;
-	public int getIdProveedor() {
+	public String getIdProveedor() {
 		return idProveedor;
 	}
-	public void setIdProveedor(int idProveedor) {
+	public void setIdProveedor(String idProveedor) {
 		this.idProveedor = idProveedor;
 	}
 	public int getIdTipoPrenda() {

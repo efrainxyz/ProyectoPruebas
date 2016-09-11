@@ -5,7 +5,7 @@ public class OrdenCompraBean {
 	String fechEmision;
 	String estadoOrdCom;
 	double montoTotal;
-	int Proveedor_idProveedor;
+	String Proveedor_idProveedor;
 	int Persona_idPersona;
 	ProveedorBean proveedor;
 	public String getIdOrdenCompra() {
@@ -32,10 +32,10 @@ public class OrdenCompraBean {
 	public void setMontoTotal(double montoTotal) {
 		this.montoTotal = montoTotal;
 	}
-	public int getProveedor_idProveedor() {
+	public String getProveedor_idProveedor() {
 		return Proveedor_idProveedor;
 	}
-	public void setProveedor_idProveedor(int proveedor_idProveedor) {
+	public void setProveedor_idProveedor(String proveedor_idProveedor) {
 		Proveedor_idProveedor = proveedor_idProveedor;
 	}
 	public int getPersona_idPersona() {

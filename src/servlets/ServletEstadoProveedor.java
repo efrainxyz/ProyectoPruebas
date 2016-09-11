@@ -14,20 +14,19 @@ import javax.servlet.http.HttpSession;
 import beans.ProveedorBean;
 import beans.UsuarioBean;
 import dao.interfaces.I_Proveedor;
-import dao.interfaces.I_Usuario;
 import daofactory.DAOFactory;
 
 /**
- * Servlet implementation class ServletEliminarProveedor
+ * Servlet implementation class ServletEstadoProveedor
  */
-@WebServlet("/EliminarProveedor")
-public class ServletEliminarProveedor extends HttpServlet {
+@WebServlet("/EstadoProveedor")
+public class ServletEstadoProveedor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletEliminarProveedor() {
+    public ServletEstadoProveedor() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,24 +42,26 @@ public class ServletEliminarProveedor extends HttpServlet {
 		if(user!=null){
 			try {
 				if(user.getRol().getNomTipo().equals("EncargadoCompras")){
-					try {
-						DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-						I_Proveedor proveedordao=dao.getProveedorDao();
-						boolean flag=proveedordao.eliminarProveedor(Integer.parseInt(request.getParameter("id")));
-						if(flag){
-							request.setAttribute("msj1", "Eliminación exitosa");
-						}else{
-							request.setAttribute("msj2", "Error. No se elimino el proveedor");
-						}
-						Vector<ProveedorBean> proveedores= proveedordao.listarProveedores();
-						if(proveedores.size()>0){
-							request.setAttribute("proveedores", proveedores);
-						}else{
-							request.setAttribute("msj", "No hay ningun proveedor registrado");
-						}
-					} catch (Exception e) {
-						System.out.print(e.getMessage());
+					
+					DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+					I_Proveedor proveedordao=dao.getProveedorDao();
+			
+					boolean flag= proveedordao.estadoProveedor(request.getParameter("id"),Integer.parseInt(request.getParameter("estado")));
+					
+					if(flag){
+						request.setAttribute("msj1", "Eliminación exitosa.");
+					}else{
+						request.setAttribute("msj2", "Error. No se puedo eliminar el proveedor.");
 					}
+		
+					
+					Vector<ProveedorBean> proveedores= proveedordao.listarProveedores();
+					if(proveedores.size()>0){
+						request.setAttribute("proveedores", proveedores);
+					}else{
+						request.setAttribute("msj", "No hay proveedores registrados");
+					}
+					
 					request.getRequestDispatcher("/EncargadoCompras/MantenerProveedores.jsp").forward(request, response);
 				}else{
 					request.setAttribute("mensaje", "Ingrese nuevamente.");

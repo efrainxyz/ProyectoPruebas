@@ -46,8 +46,8 @@ public class ServletModificarProveedor extends HttpServlet {
 					try {
 						DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 						I_Proveedor proveedordao=dao.getProveedorDao();
-						ProveedorBean proveedor= proveedordao.buscarProveedor2(Integer.parseInt(request.getParameter("id")));
-												
+						ProveedorBean proveedor= proveedordao.buscarProveedor2(request.getParameter("id"));
+											
 						if(proveedor!=null){
 							request.setAttribute("proveedor", proveedor);
 						}else{
@@ -85,7 +85,7 @@ public class ServletModificarProveedor extends HttpServlet {
 						DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 						I_Proveedor proveedordao=dao.getProveedorDao();
 						ProveedorBean proveedorModificado=new ProveedorBean();
-						proveedorModificado.setIdProveedor(Integer.parseInt(request.getParameter("id")));
+						proveedorModificado.setIdProveedor(request.getParameter("id"));
 						proveedorModificado.setRazonSoc(request.getParameter("rsMod"));
 						proveedorModificado.setDirecProve(request.getParameter("dirMod"));
 						proveedorModificado.setTelefono(request.getParameter("telMod"));
@@ -98,7 +98,7 @@ public class ServletModificarProveedor extends HttpServlet {
 							request.setAttribute("msj2", "No se pudo actualizar los datos.");
 						}
 						
-						ProveedorBean proveedor= proveedordao.buscarProveedor2(Integer.parseInt(request.getParameter("id")));
+						ProveedorBean proveedor= proveedordao.buscarProveedor2(request.getParameter("id"));
 						if(proveedor!=null){
 							request.setAttribute("proveedor", proveedor);
 						}else{

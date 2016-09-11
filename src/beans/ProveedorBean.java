@@ -1,14 +1,17 @@
 package beans;
 
 public class ProveedorBean {
-	int idProveedor;
+	String idProveedor;
 	String razonSoc;
 	String direcProve;
 	String telefono;
-	public int getIdProveedor() {
+	int estado;
+	
+	
+	public String getIdProveedor() {
 		return idProveedor;
 	}
-	public void setIdProveedor(int idProveedor) {
+	public void setIdProveedor(String idProveedor) {
 		this.idProveedor = idProveedor;
 	}
 	public String getRazonSoc() {
@@ -29,4 +32,11 @@ public class ProveedorBean {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
 }

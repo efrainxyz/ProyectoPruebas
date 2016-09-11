@@ -98,7 +98,7 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 				objorden.setEstadoOrdCom(rs.getString("estadoOrdCom"));
 				objorden.setMontoTotal(rs.getDouble("montoTotal"));
 				objorden.setPersona_idPersona(rs.getInt("persona_idPersona"));
-				objorden.setProveedor_idProveedor(rs.getInt("proveedor_idProveedor"));
+				objorden.setProveedor_idProveedor("proveedor_idProveedor");
 				
 				ordenes.add(objorden);
 			}
@@ -124,7 +124,7 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 				
 				ProveedorBean  objprove= new ProveedorBean();
 				objprove.setRazonSoc(rs.getString("d.razonSoc"));
-				objprove.setIdProveedor(Integer.parseInt(rs.getString("d.idProveedor")));
+				objprove.setIdProveedor(rs.getString("d.idProveedor"));
 				objprove.setDirecProve(rs.getString("d.direcProve"));
 				
 				
@@ -142,7 +142,7 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 				orden.setEstadoOrdCom(rs.getString("b.estadoOrdCom"));
 				orden.setMontoTotal(rs.getDouble("b.montoTotal"));
 				orden.setPersona_idPersona(rs.getInt("b.persona_idPersona"));
-				orden.setProveedor_idProveedor(rs.getInt("b.proveedor_idProveedor"));
+				orden.setProveedor_idProveedor(rs.getString("b.proveedor_idProveedor"));
 				orden.setProveedor(objprove);
 				objdetalle.setOrden(orden);
 				
@@ -200,7 +200,7 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 				objorden.setEstadoOrdCom(rs.getString("estadoOrdCom"));
 				objorden.setMontoTotal(rs.getDouble("montoTotal"));
 				objorden.setPersona_idPersona(rs.getInt("persona_idPersona"));
-				objorden.setProveedor_idProveedor(rs.getInt("proveedor_idProveedor"));
+				objorden.setProveedor_idProveedor(rs.getString("proveedor_idProveedor"));
 				
 				ordenes.add(objorden);
 			}

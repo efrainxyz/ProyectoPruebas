@@ -31,7 +31,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			
 			if(rs.next()){
 				objProveedor= new ProveedorBean();
-				objProveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
+				objProveedor.setIdProveedor(rs.getString("idProveedor"));
 				objProveedor.setRazonSoc(rs.getString("razonSoc"));
 				objProveedor.setDirecProve(rs.getString("direcProve"));
 				objProveedor.setTelefono(rs.getString("telefono"));
@@ -90,12 +90,12 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			
 			if(rs.next()){
 				objPrenda= new Proveedor_TipoPrendaBean();
-				objPrenda.setIdProveedor(rs.getInt("idProveedor"));
+				objPrenda.setIdProveedor(rs.getString("idProveedor"));
 				objPrenda.setIdTipoPrenda(rs.getInt("idTipoPrenda"));
 				objPrenda.setPrecioUnitario(rs.getDouble("precioUnitario"));
 				
 				ProveedorBean objProveedor=new ProveedorBean();
-				objProveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
+				objProveedor.setIdProveedor(rs.getString("idProveedor"));
 				objProveedor.setRazonSoc(rs.getString("razonSoc"));
 				objProveedor.setDirecProve(rs.getString("direcProve"));
 				objProveedor.setTelefono(rs.getString("telefono"));
@@ -126,10 +126,11 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			ProveedorBean objproveedor=null;
 			while( rs.next() ){
 				objproveedor= new ProveedorBean();
-				objproveedor.setIdProveedor(Integer.parseInt(rs.getString(1)));
+				objproveedor.setIdProveedor(rs.getString(1));
 				objproveedor.setRazonSoc(rs.getString(2));
 				objproveedor.setDirecProve(rs.getString(3));
 				objproveedor.setTelefono(rs.getString(4));
+				objproveedor.setEstado(rs.getInt(5));
 				
 				proveedores.add(objproveedor);
 			}
@@ -161,7 +162,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 		return flag;
 	}
 	
-	public Vector<ProveedorBean> buscarProveedor(int id_proveedor)
+	public Vector<ProveedorBean> buscarProveedor(String id_proveedor)
 			throws Exception {
 		// TODO Auto-generated method stub
 		Vector<ProveedorBean> proveedor = new Vector<ProveedorBean>();
@@ -173,7 +174,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			ProveedorBean objproveedor=null;
 			while( rs.next() ){
 				objproveedor=new ProveedorBean();
-				objproveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
+				objproveedor.setIdProveedor(rs.getString("idProveedor"));
 				objproveedor.setRazonSoc(rs.getString("razonSoc"));
 				objproveedor.setDirecProve(rs.getString("direcProve"));
 				objproveedor.setTelefono(rs.getString("telefono"));
@@ -188,7 +189,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 		return proveedor;
 	}
 	
-	public boolean eliminarProveedor(int idProveedor) throws Exception {
+	public boolean eliminarProveedor(String idProveedor) throws Exception {
 		// TODO Auto-generated method stub
 		boolean flag = false;
 		try {
@@ -207,7 +208,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 		return flag;
 	}
 	
-	public ProveedorBean buscarProveedor2(int id_proveedor) throws Exception {
+	public ProveedorBean buscarProveedor2(String id_proveedor) throws Exception {
 		// TODO Auto-generated method stub
 		ProveedorBean objproveedor = null;
 		try {
@@ -218,7 +219,7 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			while(rs.next()){
 				
 				objproveedor=new ProveedorBean();
-				objproveedor.setIdProveedor(Integer.parseInt(rs.getString("idProveedor")));
+				objproveedor.setIdProveedor(rs.getString("idProveedor"));
 				objproveedor.setRazonSoc(rs.getString("razonSoc"));
 				objproveedor.setDirecProve(rs.getString("direcProve"));
 				objproveedor.setTelefono(rs.getString("telefono"));
@@ -249,6 +250,62 @@ public class MySql_ProveedorDao extends MySQLDaoFactory implements I_Proveedor{
 			System.out.println(e.getMessage());
 		}
 		return flag;
+	}
+	
+	@Override
+	public boolean estadoProveedor(String id , int estado) throws Exception {
+		boolean flag = false;
+		try {
+			Connection con = MySQLDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			if(estado==1){
+				String query = "update proveedor set estado='0' where idProveedor="+id;
+				int fila =stmt.executeUpdate(query);
+				if(fila==1){
+					flag=true;
+				}
+			}else{
+				String query = "update proveedor set estado='1' where idProveedor="+id;
+				int fila =stmt.executeUpdate(query);
+				if(fila==1){
+					flag=true;
+				}
+				
+			}
+			con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return flag;
+	}
+	
+	@Override
+	public Vector<ProveedorBean> listarProveedorXEstado() throws Exception {
+		// TODO Auto-generated method stub
+		Vector<ProveedorBean> proveedores = new Vector<ProveedorBean>();
+		try {
+			Connection con = MySQLDaoFactory.obtenerConexion();
+			String query="select * from proveedor where estado='1'";
+			Statement stmt = con.createStatement();
+			ResultSet rs =stmt.executeQuery(query);
+			ProveedorBean objproveedor=null;
+			while( rs.next() ){
+				objproveedor= new ProveedorBean();
+				objproveedor.setIdProveedor(rs.getString(1));
+				objproveedor.setRazonSoc(rs.getString(2));
+				objproveedor.setDirecProve(rs.getString(3));
+				objproveedor.setTelefono(rs.getString(4));
+				objproveedor.setEstado(rs.getInt(5));
+				
+				proveedores.add(objproveedor);
+			}
+			con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		return proveedores;
 	}
 
 }

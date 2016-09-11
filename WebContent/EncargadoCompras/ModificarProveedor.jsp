@@ -47,7 +47,7 @@ ProveedorBean proveedor=(ProveedorBean) request.getAttribute("proveedor");%>
 	                 	<div class="col-sm-12 form-group">
 	                 	<br>
 							<div class="col-sm-12" style="text-align: left;">
-								<label for="codigoProveedor" class="col-sm-3 control-label" style="text-align: right; font-size: 20px;">C&oacute;digo:</label>
+								<label for="codigoProveedor" class="col-sm-3 control-label" style="text-align: right; font-size: 20px;">RUC:</label>
 								<div class="col-sm-9" style="text-align: left;">
 									<input class="form-control" type="number" min="0" name="id" readonly value="<%=proveedor.getIdProveedor()%>">
 								</div>

@@ -97,7 +97,7 @@ public class ServletGenerarOrdenCompra extends HttpServlet {
 						String [] tallas=request.getParameterValues("tallaPrenda");
 						String [] cantidades=request.getParameterValues("cantidadPrenda");
 						double montoTotal=Double.parseDouble(request.getParameter("montoTotal"));
-						int idProveedor=Integer.parseInt(request.getParameter("idProveedor"));
+						String idProveedor=request.getParameter("idProveedor");
 						String nroOrden=ordencompradao.generarNroOrdenCompra();
 						if(codigosPrenda.length>0){
 							OrdenCompraBean orden=new OrdenCompraBean();

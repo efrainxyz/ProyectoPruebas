@@ -45,7 +45,7 @@ public class ServletProveedorPedido extends HttpServlet {
 					try {
 						DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 						I_Proveedor proveedordao=dao.getProveedorDao();
-						Vector<ProveedorBean> proveedor= proveedordao.listarProveedores();
+						Vector<ProveedorBean> proveedor= proveedordao.listarProveedorXEstado();
 						if(proveedor.size()>0){
 							request.setAttribute("proveedor", proveedor);
 						}else{
