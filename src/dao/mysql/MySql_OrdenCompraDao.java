@@ -189,7 +189,7 @@ public class MySql_OrdenCompraDao extends MySQLDaoFactory implements I_OrdenComp
 		Vector<OrdenCompraBean> ordenes = new Vector<OrdenCompraBean>();
 		try {
 			Connection con = MySQLDaoFactory.obtenerConexion();
-			String query="SELECT a.idOrdenCompra,date(a.fechEmision) as 	,a.estadoOrdCom,a.montoTotal,a.persona_idPersona,a.proveedor_idProveedor,b.razonSoc,b.direcProve FROM ordencompra a INNER JOIN proveedor b ON a.proveedor_idProveedor=b.idProveedor  where estadoOrdCom='2' order by fechEmision desc";
+			String query="SELECT a.idOrdenCompra,date(a.fechEmision) as fechEmision	,a.estadoOrdCom,a.montoTotal,a.persona_idPersona,a.proveedor_idProveedor,b.razonSoc,b.direcProve FROM ordencompra a INNER JOIN proveedor b ON a.proveedor_idProveedor=b.idProveedor  where estadoOrdCom='2' order by fechEmision desc";
 			Statement stmt = con.createStatement();
 			ResultSet rs =stmt.executeQuery(query);
 			OrdenCompraBean objorden=null;
